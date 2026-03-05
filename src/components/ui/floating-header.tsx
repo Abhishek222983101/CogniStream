@@ -21,7 +21,7 @@ export function FloatingHeader() {
       className={cn(
         'sticky top-6 z-50',
         'mx-auto w-[95%] max-w-7xl border-brutal shadow-brutal',
-        'bg-cream transition-all duration-300'
+        'bg-cream/90 backdrop-blur-sm transition-all duration-300'
       )}
     >
       <nav className="mx-auto flex items-center justify-between p-4 px-6 md:px-8">

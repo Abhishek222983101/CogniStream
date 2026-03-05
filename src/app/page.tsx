@@ -36,8 +36,8 @@ export default function Home() {
       {/* Absolute full-screen dot pattern wrapper behind everything (including navbar) */}
       <div className="fixed inset-0 bg-dot-pattern opacity-[0.06] pointer-events-none z-0" />
       
-      {/* Brutalist Navbar Component */}
-      <div className="relative z-50">
+      {/* Brutalist Navbar Component - Floating with margin */}
+      <div className="relative z-50 pt-4">
         <FloatingHeader />
       </div>
 
@@ -198,7 +198,7 @@ export default function Home() {
             <div className="flex flex-col items-center md:items-end gap-2 z-10">
               <div className="text-xs font-mono font-bold uppercase tracking-widest text-white/40">Connect</div>
               <div className="flex gap-2">
-                <a href="https://github.com/Abhishekislinux" target="_blank" rel="noopener noreferrer" className="bg-white/10 px-3 py-1 text-xs font-mono font-bold uppercase border border-white/20 hover:bg-white hover:text-black hover:border-black transition-colors">GitHub</a>
+                <a href="https://github.com/Abhishek222983101/CogniStream" target="_blank" rel="noopener noreferrer" className="bg-white/10 px-3 py-1 text-xs font-mono font-bold uppercase border border-white/20 hover:bg-white hover:text-black hover:border-black transition-colors">GitHub</a>
                 <a href="https://twitter.com/Abhishekislinux" target="_blank" rel="noopener noreferrer" className="bg-white/10 px-3 py-1 text-xs font-mono font-bold uppercase border border-white/20 hover:bg-white hover:text-black hover:border-black transition-colors">Twitter</a>
               </div>
             </div>
