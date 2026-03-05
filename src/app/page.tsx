@@ -4,6 +4,7 @@ import HeroText from "@/components/ui/hero-shutter-text";
 import { MetricsScoreCards } from "@/components/ui/metrics-score-cards";
 import { GradientHeading } from "@/components/ui/gradient-heading";
 import { FloatingHeader } from "@/components/ui/floating-header";
+import { GridAnimation } from "@/components/ui/mouse-following-line";
 
 export default function Home() {
   const metricsData = [
@@ -32,14 +33,18 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-cream font-mono relative bg-noise overflow-x-hidden">
+      {/* Absolute full-screen dot pattern wrapper behind everything (including navbar) */}
+      <div className="fixed inset-0 bg-dot-pattern opacity-[0.06] pointer-events-none z-0" />
       
       {/* Brutalist Navbar Component */}
-      <FloatingHeader />
+      <div className="relative z-50">
+        <FloatingHeader />
+      </div>
 
-      <main className="flex flex-col">
+      <main className="flex flex-col relative z-10">
         {/* Hero Section */}
-        <section className="relative px-6 py-12 md:px-12 md:py-20 border-brutal-b bg-cream overflow-hidden">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+        <section className="relative px-6 py-12 md:px-12 md:py-20 border-brutal-b border-t-4 border-black bg-transparent overflow-hidden mt-6">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 relative z-10">
             {/* Decorative Background Elements */}
             <div className="absolute top-[-50px] right-[-100px] w-96 h-96 bg-cyber-yellow rounded-full blur-3xl opacity-50 pointer-events-none" />
 
@@ -101,7 +106,7 @@ export default function Home() {
         </section>
 
         {/* How It Works Section */}
-        <section id="features" className="px-6 py-20 md:px-12 md:py-28 bg-[#111] text-white border-brutal-b relative">
+        <section id="features" className="px-6 py-20 md:px-12 md:py-28 bg-[#111] text-white border-brutal-b relative bg-grid-pattern-dark">
           <div className="max-w-4xl mx-auto">
             <GradientHeading 
               variant="lime" 
@@ -147,27 +152,64 @@ export default function Home() {
         </section>
 
         {/* Bottom CTA */}
-        <section id="about" className="px-6 py-24 md:px-12 md:py-32 bg-lime-green border-brutal-b flex flex-col items-center justify-center text-center">
-          <GradientHeading 
-             variant="default"
-             size="xxl"
-             className="mb-8 max-w-4xl drop-shadow-[4px_4px_0px_rgba(255,255,255,1)] text-black"
-          >
-            SEE THE MAGIC HAPPEN LIVE.
-          </GradientHeading>
-          <Link
-            href="/simulator"
-            className="inline-flex items-center gap-4 bg-black text-white brutal-btn hover:bg-white hover:text-black border-white hover:border-black px-10 py-6 text-2xl md:text-4xl uppercase"
-          >
-            Launch The Simulator <ArrowRight className="w-10 h-10" strokeWidth={3} />
-          </Link>
+        <section id="about" className="px-6 py-24 md:px-12 md:py-32 bg-lime-green border-brutal-b border-t-4 border-black flex flex-col items-center justify-center text-center relative overflow-hidden mt-0">
+          <GridAnimation 
+            cols={50} 
+            rows={20} 
+            spacing={40} 
+            strokeLength={18} 
+            strokeWidth={3} 
+            lineColor="rgba(0,0,0,0.15)"
+            className="absolute inset-0 w-full h-full"
+          />
+          
+          <div className="relative z-10 flex flex-col items-center">
+            <GradientHeading 
+               variant="default"
+               size="xxl"
+               className="mb-8 max-w-4xl drop-shadow-[4px_4px_0px_rgba(255,255,255,1)] text-black"
+            >
+              SEE THE MAGIC HAPPEN LIVE.
+            </GradientHeading>
+            <Link
+              href="/simulator"
+              className="inline-flex items-center gap-4 bg-black text-white brutal-btn hover:bg-white hover:text-black border-white hover:border-black px-10 py-6 text-2xl md:text-4xl uppercase"
+            >
+              Launch The Simulator <ArrowRight className="w-10 h-10" strokeWidth={3} />
+            </Link>
+          </div>
         </section>
 
-        {/* Footer */}
-        <footer className="bg-cream px-6 py-8 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 font-mono border-brutal-t">
-          <div className="font-heading text-2xl font-black uppercase tracking-tighter">CogniStream</div>
-          <div className="text-sm font-bold uppercase tracking-widest text-black/50">Copyright © {new Date().getFullYear()}</div>
-        </footer>
+        {/* Floating Brutalist Footer */}
+        <div className="bg-transparent px-4 py-8 pb-12 w-full flex justify-center mt-8">
+          <footer className="w-full max-w-7xl bg-[#111] text-white border-brutal shadow-brutal p-8 md:p-12 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden bg-grid-pattern-dark">
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12 z-10">
+              <div className="flex items-center gap-3">
+                <Activity className="size-8 stroke-[3px] text-lime-green" />
+                <div className="font-heading text-3xl font-black uppercase tracking-tighter text-white">CogniStream</div>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-6 font-mono text-sm font-bold uppercase tracking-widest text-white/70">
+                <a href="#technology" className="hover:text-lime-green transition-colors">Technology</a>
+                <a href="#features" className="hover:text-cyber-yellow transition-colors">Features</a>
+                <a href="/simulator" className="hover:text-hot-coral transition-colors">Live Demo</a>
+              </div>
+            </div>
+            
+            <div className="flex flex-col items-center md:items-end gap-2 z-10">
+              <div className="text-xs font-mono font-bold uppercase tracking-widest text-white/40">Powered By</div>
+              <div className="flex gap-2">
+                <span className="bg-white/10 px-3 py-1 text-xs font-mono font-bold uppercase border border-white/20">Next.js</span>
+                <span className="bg-white/10 px-3 py-1 text-xs font-mono font-bold uppercase border border-white/20">React</span>
+                <span className="bg-white/10 px-3 py-1 text-xs font-mono font-bold uppercase border border-white/20">Vercel</span>
+              </div>
+            </div>
+
+            {/* Copyright text at the absolute bottom center of the floating box */}
+            <div className="absolute bottom-4 left-0 right-0 text-center text-[10px] font-mono font-bold uppercase tracking-widest text-white/30 z-10">
+              Copyright © {new Date().getFullYear()} Team Paradigm. All rights reserved.
+            </div>
+          </footer>
+        </div>
       </main>
     </div>
   );
